@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 09:00:39 by ocartier          #+#    #+#             */
-/*   Updated: 2022/04/18 21:24:34 by ocartier         ###   ########.fr       */
+/*   Updated: 2022/06/17 18:06:26 by ocartier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,12 @@ char	**change_my_env(char **cmd, char **my_env)
 	char	*pwd;
 
 	pwd = my_getenv(my_env, "PWD");
+	if (!pwd)
+	{
+		ft_printf("\033[91m%s\033[0m\n",
+			"minishell: cd does not work if PWD is unset");
+		return (my_env);
+	}
 	if (!cmd[1])
 	{
 		my_env = change_pwd_home(my_env);
@@ -95,8 +101,7 @@ char	**change_my_env(char **cmd, char **my_env)
 	}
 	else
 		my_env = change_pwd_relativ(cmd[1], my_env);
-	if (pwd)
-		free(pwd);
+	free(pwd);
 	return (my_env);
 }
 

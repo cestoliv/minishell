@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 09:00:46 by ocartier          #+#    #+#             */
-/*   Updated: 2022/04/18 21:21:24 by ocartier         ###   ########.fr       */
+/*   Updated: 2022/06/17 18:02:22 by ocartier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ char	**copy_env(char **env)
 
 /*
 	return index of given elem in env
+	return -1 if not found
 */
 
 int	my_env_index_elem(char **my_env, char *elem)
@@ -84,6 +85,8 @@ int	my_env_index_elem(char **my_env, char *elem)
 			break ;
 		index++;
 	}
+	if (index == strarr_len(my_env))
+		return (-1);
 	return (index);
 }
 

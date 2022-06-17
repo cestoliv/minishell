@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 09:01:41 by ocartier          #+#    #+#             */
-/*   Updated: 2022/04/18 21:07:49 by ocartier         ###   ########.fr       */
+/*   Updated: 2022/06/17 18:06:54 by ocartier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	ft_pwd(t_mem *mem)
 	}
 	else
 	{
+		ft_printf("\033[91m%s\033[0m\n",
+			"minishell: pwd does not work if PWD is unset");
 		mem->exit_statue = 1;
 		exit(EXIT_FAILURE);
 	}
