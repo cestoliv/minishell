@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 09:00:44 by ocartier          #+#    #+#             */
-/*   Updated: 2022/04/20 11:38:18 by ocartier         ###   ########.fr       */
+/*   Updated: 2022/06/17 17:53:48 by ocartier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ int	ft_echo(char **s, t_mem *mem)
 
 	i = 0;
 	has_n = 0;
-	if (s[1] && ft_strncmp(s[1], "-n", 2) == 0)
-		has_n = 1;
+	if (s[1] && s[1][0] == '-')
+		if (contains_only(s[1] + 1, 'n'))
+			has_n = 1;
 	if (has_n)
 		i++;
 	while (s[++i])
