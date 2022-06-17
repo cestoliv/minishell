@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ocartier <ocartier@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 13:57:46 by ocartier          #+#    #+#             */
-/*   Updated: 2022/04/04 17:19:00 by ocartier         ###   ########.fr       */
+/*   Created: 2022/04/18 09:01:05 by ocartier          #+#    #+#             */
+/*   Updated: 2022/04/20 11:33:19 by ocartier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../../include/minishell.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_exit(t_mem *mem, t_cmdlst *lst)
 {
-	t_list	*next;
-
-	while (*lst)
-	{
-		next = (*lst)->next;
-		del((*lst)->content);
-		free(*lst);
-		*lst = next;
-	}
-	*lst = NULL;
+	cmdlst_clear(&lst);
+	exit(free_mem(mem));
 }

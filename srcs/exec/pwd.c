@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ocartier <ocartier@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 13:57:46 by ocartier          #+#    #+#             */
-/*   Updated: 2022/04/04 17:19:00 by ocartier         ###   ########.fr       */
+/*   Created: 2022/04/18 09:01:41 by ocartier          #+#    #+#             */
+/*   Updated: 2022/04/18 21:07:49 by ocartier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../../include/minishell.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+/*
+	Minishell built-in function (pwd)
+	Print the PWD from the env if found
+*/
+int	ft_pwd(t_mem *mem)
 {
-	t_list	*next;
+	char	*pwd;
 
-	while (*lst)
+	pwd = my_getenv(mem->my_env, "PWD");
+	if (pwd)
 	{
-		next = (*lst)->next;
-		del((*lst)->content);
-		free(*lst);
-		*lst = next;
+		write(1, pwd, ft_strlen(pwd));
+		write(1, "\n", 1);
+		mem->exit_statue = 0;
+		free(pwd);
+		exit(EXIT_SUCCESS);
 	}
-	*lst = NULL;
+	else
+	{
+		mem->exit_statue = 1;
+		exit(EXIT_FAILURE);
+	}
 }
